@@ -12,6 +12,12 @@ class NotesController < ApplicationController
   def show
   end
 
+  def rendering
+    @note = Note.new do |n|
+      n.raw_body = params[:raw_body]
+    end
+  end
+
   # GET /notes/new
   def new
     @note = Note.new
@@ -43,7 +49,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.update(note_params)
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
-        format.json { render :show, status: :ok, location: @note }
+        format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @note.errors, status: :unprocessable_entity }
