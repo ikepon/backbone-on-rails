@@ -9,7 +9,10 @@
     = csrf_meta_tags
   %body
     %header.navbar.navbar-inverse.navbar-fixed-top
-      .container
-        %a.navbar-brand{href: root_path} BackboneOnRails
+      %a.navbar-brand{href: root_path} BackboneOnRails
+      .collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li= link_to 'Notes', notes_path
+          %li= link_to 'Tasks', tasks_path
     #main.container
       = yield
