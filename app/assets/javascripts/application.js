@@ -19,4 +19,4 @@
 //= require handlebars.runtime
 //= require highlightjs
 //= require notifyjs/notify-combined
-//= require_tree .
+//= require bootstrap_load
