@@ -1,1 +1,16 @@
-{{title}}
+:scss
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+
+-# TODO 書き方が分からない。。。あとで直す
+{{#if completed}}
+%input{type: "checkbox", class: "toggle", checked: true}
+{{else}}
+%input{type: "checkbox", class: "toggle", checked: false}
+{{/if}}
+
+%span{class: "{{#if completed}}completed{{/if}}"}
+  {{title}}
+%span.delete [x]
