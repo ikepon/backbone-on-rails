@@ -2,4 +2,7 @@
   = javascript_include_tag 'tasks', media: 'all'
 
 %h1 Tasks
+%form#addTask
+  %input#title{type: 'text'}
+  %input{type: 'submit', value: 'add'}
 #tasks

@@ -27,5 +27,6 @@ $(function() {
   ]);
 
   var tasksView = new TaskApp.TasksView({ collection: tasks });
+  var addTaskView = new TaskApp.AddTaskView({collection: tasks});
   $('#tasks').html(tasksView.render().el);
 });
