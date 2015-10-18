@@ -12,7 +12,7 @@ s.Views.Notes.IndexItemView = Backbone.View.extend({
     return "note-" + this.model.id;
   },
   className: 'note',
-  template: HandlebarsTemplates['notes/index_item'],
+  template: JST['notes/index_item'],
   events: {
     'click .note-title': 'navigateToNote',
     'click .delete-note': 'deleteNote'

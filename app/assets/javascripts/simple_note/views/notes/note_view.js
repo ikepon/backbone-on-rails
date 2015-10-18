@@ -8,7 +8,7 @@ if ((base = s.Views).Notes == null) {
 
 s.Views.Notes.NoteView = Backbone.View.extend({
   className: 'new-note',
-  template: HandlebarsTemplates['notes/note'],
+  template: JST['notes/note'],
   events: {
     'click .submit-note-form': 'submit',
     'click .back': 'navigateToNoteIndex'

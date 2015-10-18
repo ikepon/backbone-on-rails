@@ -7,7 +7,7 @@ if ((base = s.Views).Notes == null) {
 }
 
 s.Views.Notes.PreviewView = Backbone.View.extend({
-  template: HandlebarsTemplates['notes/preview'],
+  template: JST['notes/preview'],
   bindings: {
     '#note-title': 'title'
   },

@@ -7,7 +7,7 @@ if ((base = s.Views).Notes == null) {
 }
 
 s.Views.Notes.IndexView = Backbone.View.extend({
-  template: HandlebarsTemplates['notes/index'],
+  template: JST['notes/index'],
   events: {
     'click a.new-note-btn': 'navigateToNewNote'
   },
