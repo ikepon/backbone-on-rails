@@ -13,19 +13,3 @@
 
 'use strict'
 
-this.SimpleNote = {
-  Models: {},
-  Collections: {},
-  Views: {},
-  Routers: {},
-  init: function() {
-    this.router = new SimpleNote.Routers.NoteRouter();
-    return Backbone.history.start({
-      pushState: true
-    });
-  }
-};
-
-$(function() {
-  return SimpleNote.init();
-});
