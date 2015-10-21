@@ -6,7 +6,7 @@ s.NoteRouter = Backbone.Router.extend({
   routes: {
     "notes/:id": "showNote",
     "notes": "indexNotes",
-    "": "indexNotes"
+    ".*": "indexNotes"
   },
 
   indexNotes: function() {
