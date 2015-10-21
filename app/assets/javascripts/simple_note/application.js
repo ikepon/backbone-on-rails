@@ -13,3 +13,15 @@
 
 'use strict'
 
+this.SimpleNote = {
+  init: function() {
+    this.router = new SimpleNote.NoteRouter();
+    return Backbone.history.start({
+      pushState: true
+    });
+  }
+};
+
+$(function() {
+  return SimpleNote.init();
+});
