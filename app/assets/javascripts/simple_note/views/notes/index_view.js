@@ -33,6 +33,12 @@ s.Notes.IndexView = Backbone.View.extend({
 
     $("#main").html(this.el);
 
+    var newButtonView;
+
+    newButtonView = new s.Notes.NewButtonView();
+
+    $("#main").prepend(newButtonView.render().el);
+
     return this;
   }
 });
