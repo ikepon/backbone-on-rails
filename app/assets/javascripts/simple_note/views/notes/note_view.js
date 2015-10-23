@@ -8,7 +8,8 @@ s.Notes.NoteView = Backbone.View.extend({
   template: JST["notes/note"],
 
   events: {
-    "click .submit-note-form": "submit"
+    "click .submit-note-form": "submit",
+    "click .back": "navigateToNoteIndex"
   },
 
   bindings: {
@@ -17,9 +18,17 @@ s.Notes.NoteView = Backbone.View.extend({
   },
 
   render: function() {
+    var preview;
     this.$el.html(this.template(this.model.toJSON()));
 
     $("#main").html(this.el);
+
+    preview = new s.Notes.PreviewView({
+      model: this.model,
+      el: this.$(".preview-col")
+    });
+
+    preview.render();
 
     this.stickit();
 
@@ -29,5 +38,10 @@ s.Notes.NoteView = Backbone.View.extend({
   submit: function(e) {
     e.preventDefault();
     return this.trigger("clickSubmit");
+  },
+
+  navigateToNoteIndex: function(e) {
+    e.preventDefault();
+    return Backbone.history.navigate("notes", true);
   }
 });
