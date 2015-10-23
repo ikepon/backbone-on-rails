@@ -2,10 +2,14 @@ var s;
 
 s = this.SimpleNote;
 
-s.Notes.NewView = Backbone.View.extend({
+s.Notes.NoteView = Backbone.View.extend({
   className: "new-note",
 
-  template: JST["notes/new"],
+  template: JST["notes/note"],
+
+  events: {
+    "click .submit-note-form": "submit"
+  },
 
   bindings: {
     "#input-note-title": "title",
@@ -20,5 +24,10 @@ s.Notes.NewView = Backbone.View.extend({
     this.stickit();
 
     return this;
+  },
+
+  submit: function(e) {
+    e.preventDefault();
+    return this.trigger("clickSubmit");
   }
 });
