@@ -1,5 +1,11 @@
 TaskApp.TaskView = Backbone.View.extend({
   tagName: 'li',
+  id: function() {
+    return "task-" + this.model.id;
+  },
+  className: "task",
+
+  template: JST['tasks/task'],
 
   initialize: function() {
     this.model.on("destroy", this.remove, this);
@@ -11,14 +17,10 @@ TaskApp.TaskView = Backbone.View.extend({
     "click .toggle": "toggle"
   },
 
-  template: JST['tasks/task'],
-
   render: function() {
     var taskStatus;
-    this.model.get('completed') ? taskStatus = 'checked' : taskStatus = '';
 
-    var template = this.template(this.model.toJSON(), {taskStatus: taskStatus});
-    this.$el.html(template);
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
 

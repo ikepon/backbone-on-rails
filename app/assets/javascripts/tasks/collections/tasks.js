@@ -1,1 +1,3 @@
-TaskApp.Tasks = Backbone.Collection.extend({ model: TaskApp.Task });
+TaskApp.Tasks = Backbone.Collection.extend({
+  url: "/tasks"
+});
