@@ -2,31 +2,26 @@
 //= require backbone
 //= require backbone.stickit/backbone.stickit
 //= require handlebars.runtime
+//= require notifyjs/notify-combined
+//= require_self
 //= require_tree ./routers
 //= require_tree ./templates
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
 
-//= require_self
-
 'use strict'
 
-$(function() {
-  var tasks = new TaskApp.Tasks([
-    {
-      title: 'task1',
-      completed: true
-    },
-    {
-      title: 'task2'
-    },
-    {
-      title: 'task3'
-    }
-  ]);
+this.TaskApp = {
+  init: function() {
+    this.router = new TaskApp.TaskRouter();
 
-  var tasksView = new TaskApp.TasksView({ collection: tasks });
-  var addTaskView = new TaskApp.AddTaskView({collection: tasks});
-  $('#tasks').html(tasksView.render().el);
+    return Backbone.history.start({
+      pushState: true
+    });
+  }
+};
+
+$(function() {
+  return TaskApp.init();
 });
