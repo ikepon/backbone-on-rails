@@ -5,6 +5,14 @@ s = SimpleNote;
 s.Note = Backbone.Model.extend({
   urlRoot: '/notes',
 
+  initialize: function() {
+    return this.listenTo(this, "change:raw_body", _.debounce((function(_this) {
+      return function() {
+        return _this.renderBody();
+      };
+    })(this), 300));
+  },
+
   previewText: function(length) {
     var ref;
 
@@ -17,15 +25,14 @@ s.Note = Backbone.Model.extend({
 
   renderBody: function() {
     return $.ajax("/notes/rendering", {
-      type: "GET",
+      type: "POST",
       dataType: "json",
       data: {
         raw_body: this.get("raw_body")
       }
     }).done((function(_this) {
       return function(data) {
-        _this.set("body", data);
-        return _this.trigger("renderBody", data);
+        return _this.set("body", data.body);
       };
     })(this));
   }
