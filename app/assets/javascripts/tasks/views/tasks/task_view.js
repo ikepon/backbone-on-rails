@@ -8,12 +8,17 @@ TaskApp.TaskView = Backbone.View.extend({
   template: JST['tasks/task'],
 
   initialize: function() {
-    this.model.on("destroy", this.remove, this);
     this.model.on("change", this.render, this);
+
+    return this.listenTo(this.model, "destroy", (function(_this) {
+      return function() {
+        return _this.remove();
+      };
+    })(this));
   },
 
   events: {
-    "click .delete": "destroy",
+    "click .delete-task": "deleteTask",
     "click .toggle": "toggle"
   },
 
@@ -24,8 +29,10 @@ TaskApp.TaskView = Backbone.View.extend({
     return this;
   },
 
-  destroy: function() {
-    if (confirm("are you sure?")) {
+  deleteTask: function(e) {
+    e.preventDefault();
+
+    if (confirm("タスクを削除しますか？")) {
       this.model.destroy();
     }
   },

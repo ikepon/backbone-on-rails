@@ -13,4 +13,4 @@
 
 %span{class: "{{#if completed}}completed{{/if}}"}
   {{title}}
-%span.delete [x]
+%a.delete-task.glyphicon.glyphicon-trash{href: '#'}
