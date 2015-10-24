@@ -13,6 +13,14 @@ s.Notes.IndexItemView = Backbone.View.extend({
   },
   className: "note",
 
+  initialize: function() {
+    return this.listenTo(this.model, "destroy", (function(_this) {
+      return function() {
+        return _this.remove();
+      };
+    })(this));
+  },
+
   template: JST["notes/index_item"],
 
   events: {
@@ -41,11 +49,7 @@ s.Notes.IndexItemView = Backbone.View.extend({
     e.preventDefault();
 
     if (confirm("ノートを削除しますか？")) {
-      return this.model.destroy().done((function(_this) {
-        return function() {
-          return _this.remove();
-        };
-      })(this));
+      this.model.destroy();
     }
   }
 });
