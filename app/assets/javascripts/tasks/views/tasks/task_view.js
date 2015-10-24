@@ -19,7 +19,9 @@ TaskApp.TaskView = Backbone.View.extend({
 
   events: {
     "click .delete-task": "deleteTask",
-    "click .toggle": "toggle"
+    "click .toggle": "toggle",
+    "dblclick .task-title": "editTask",
+    "blur .edit": "closeTask"
   },
 
   render: function() {
@@ -44,5 +46,23 @@ TaskApp.TaskView = Backbone.View.extend({
   toggle: function() {
     this.model.set('completed', !this.model.get('completed'));
     this.model.save();
+  },
+
+  editTask: function() {
+    // TODO class で状態管理するんじゃなくて、どこかで edit: true とかを持つようにする
+    this.$el.addClass("editing");
+    this.$(".edit").focus();
+  },
+
+  closeTask: function() {
+    taskTitle = this.$(".edit").val();
+
+    if (taskTitle) {
+      this.model.save({
+        title: taskTitle
+      });
+    }
+
+    return this.$el.removeClass("editing");
   }
 });

@@ -5,6 +5,7 @@
 %input{type: "checkbox", class: "toggle", checked: false}
 {{/if}}
 
-%span{class: "{{#if completed}}completed{{/if}}"}
+%span{class: "task-title {{#if completed}}completed{{/if}}"}
   {{title}}
+%input{class: "edit", type: "text", value: "{{title}}"}
 %a.delete-task.glyphicon.glyphicon-trash{href: '#'}
