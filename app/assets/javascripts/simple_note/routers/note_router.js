@@ -38,8 +38,9 @@ s.NoteRouter = Backbone.Router.extend({
     this.__renderNoteView();
 
     return this.listenTo(this.note, 'sync', (function(_this) {
-      return function() {
-        return _this.navigate("notes", true);
+      return function(note) {
+        _this.navigate("notes", true);
+        return _this.stopListening(note);
       };
     })(this));
   },
@@ -72,7 +73,7 @@ s.NoteRouter = Backbone.Router.extend({
 
     this.layout.setView(noteView);
 
-    return this.listenTo(this.currentView, 'clickSubmit', (function(_this) {
+    return this.listenTo(this.layout.currentView, 'clickSubmit', (function(_this) {
       return function() {
         return _this.note.save();
       };

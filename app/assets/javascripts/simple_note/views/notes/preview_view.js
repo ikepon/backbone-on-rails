@@ -12,7 +12,10 @@ s.Notes.PreviewView = Backbone.View.extend({
       update: _.debounce((function(_this) {
         return function($el, val, model, options) {
           return model.renderBody().done(function(data) {
-            return $el.html(data.body);
+            $el.html(data.body);
+            return $("code").each(function(i, e) {
+              return hljs.highlightBlock(e);
+            });
           });
         };
       })(this), 400)
