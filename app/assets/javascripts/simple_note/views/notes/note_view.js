@@ -21,8 +21,6 @@ s.Notes.NoteView = Backbone.View.extend({
     var preview;
     this.$el.html(this.template(this.model.toJSON()));
 
-    $("#main").html(this.el);
-
     preview = new s.Notes.PreviewView({
       model: this.model,
       el: this.$(".preview-col")

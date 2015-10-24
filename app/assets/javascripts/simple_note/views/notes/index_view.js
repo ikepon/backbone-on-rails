@@ -7,8 +7,11 @@ if (s.Notes == null) {
 }
 
 s.Notes.IndexView = Backbone.View.extend({
-  tagName: 'ul',
-  id: 'notes',
+  template: JST["notes/index"],
+
+  events: {
+    "click a.new-note-btn": "navigateToNewNote"
+  },
 
   initialize: function(options) {
     this.options = options;
@@ -21,24 +24,23 @@ s.Notes.IndexView = Backbone.View.extend({
   },
 
   render: function() {
+    this.$el.html(this.template());
+
     this.collection.each((function(_this) {
       return function(note) {
         var view;
         view = new s.Notes.IndexItemView({
           model: note
         });
-        return _this.$el.append(view.render().el);
+        return _this.$(".notes").append(view.render().el);
       };
     })(this));
 
-    $("#main").html(this.el);
-
-    var newButtonView;
-
-    newButtonView = new s.Notes.NewButtonView();
-
-    $("#main").prepend(newButtonView.render().el);
-
+    this.$("#note-menu");
     return this;
+  },
+
+  navigateToNewNote: function() {
+    return Backbone.history.navigate("notes/new", true);
   }
 });
