@@ -39,6 +39,8 @@ TaskApp.TasksView = Backbone.View.extend({
       };
     })(this));
 
+    var addTaskView = new TaskApp.AddTaskView({collection: this.collection});
+
     $("#tasks-main").html(this.el);
     this.updateCount();
     return this;

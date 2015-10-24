@@ -12,6 +12,7 @@ TaskApp.AddTaskView = Backbone.View.extend({
     var task = new TaskApp.Task();
 
     if (task.set({title: $('#title').val()}, {validate: true})) {
+      task.save();
       this.collection.add(task);
       $('#error').empty();
     }

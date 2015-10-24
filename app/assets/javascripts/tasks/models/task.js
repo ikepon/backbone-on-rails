@@ -1,5 +1,5 @@
 TaskApp.Task = Backbone.Model.extend({
-  urlRoot: "/notes",
+  urlRoot: "/tasks",
 
   defaults: {
     title: 'do something',
