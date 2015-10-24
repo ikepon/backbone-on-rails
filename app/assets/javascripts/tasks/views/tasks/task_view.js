@@ -43,5 +43,6 @@ TaskApp.TaskView = Backbone.View.extend({
 
   toggle: function() {
     this.model.set('completed', !this.model.get('completed'));
+    this.model.save();
   }
 });
