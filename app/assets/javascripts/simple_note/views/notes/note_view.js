@@ -1,6 +1,6 @@
 var s;
 
-s = this.SimpleNote;
+s = SimpleNote;
 
 s.Notes.NoteView = Backbone.View.extend({
   className: "new-note",

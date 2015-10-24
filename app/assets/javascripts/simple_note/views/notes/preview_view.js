@@ -1,6 +1,6 @@
 var s;
 
-s = this.SimpleNote;
+s = SimpleNote;
 
 s.Notes.PreviewView = Backbone.View.extend({
   template: JST["notes/preview"],

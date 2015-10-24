@@ -1,6 +1,6 @@
 var s;
 
-s = this.SimpleNote;
+s = SimpleNote;
 
 s.LayoutView = Backbone.View.extend({
   viewContainer: "#main",

@@ -1,6 +1,6 @@
 var  s;
 
-s = this.SimpleNote;
+s = SimpleNote;
 
 if (s.Notes == null) {
   s.Notes = {};
