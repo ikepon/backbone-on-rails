@@ -23,4 +23,4 @@ this.StyleSample =
     console.log 'init StyleSample'
 
 $ ->
-  StyleSample.init();
+  StyleSample.init()
