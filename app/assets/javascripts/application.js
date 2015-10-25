@@ -13,4 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require lodash
+//= require backbone
+//= require backbone.stickit/backbone.stickit
+//= require handlebars.runtime
+//= require highlightjs
+//= require notifyjs/notify-combined
+//= require bootstrap_load
