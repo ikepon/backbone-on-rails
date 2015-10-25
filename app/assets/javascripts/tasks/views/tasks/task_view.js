@@ -1,29 +1,40 @@
 TaskApp.TaskView = Backbone.View.extend({
   tagName: 'li',
-
-  initialize: function() {
-    this.model.on("destroy", this.remove, this);
-    this.model.on("change", this.render, this);
+  id: function() {
+    return "task-" + this.model.id;
   },
-
-  events: {
-    "click .delete": "destroy",
-    "click .toggle": "toggle"
-  },
+  className: "task",
 
   template: JST['tasks/task'],
 
+  initialize: function() {
+    this.model.on("change", this.render, this);
+
+    return this.listenTo(this.model, "destroy", (function(_this) {
+      return function() {
+        return _this.remove();
+      };
+    })(this));
+  },
+
+  events: {
+    "click .delete-task": "deleteTask",
+    "click .toggle": "toggle",
+    "dblclick .task-title": "editTask",
+    "blur .edit": "closeTask"
+  },
+
   render: function() {
     var taskStatus;
-    this.model.get('completed') ? taskStatus = 'checked' : taskStatus = '';
 
-    var template = this.template(this.model.toJSON(), {taskStatus: taskStatus});
-    this.$el.html(template);
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
 
-  destroy: function() {
-    if (confirm("are you sure?")) {
+  deleteTask: function(e) {
+    e.preventDefault();
+
+    if (confirm("タスクを削除しますか？")) {
       this.model.destroy();
     }
   },
@@ -34,5 +45,24 @@ TaskApp.TaskView = Backbone.View.extend({
 
   toggle: function() {
     this.model.set('completed', !this.model.get('completed'));
+    this.model.save();
+  },
+
+  editTask: function() {
+    // TODO class で状態管理するんじゃなくて、どこかで edit: true とかを持つようにする
+    this.$el.addClass("editing");
+    this.$(".edit").focus();
+  },
+
+  closeTask: function() {
+    taskTitle = this.$(".edit").val();
+
+    if (taskTitle) {
+      this.model.save({
+        title: taskTitle
+      });
+    }
+
+    return this.$el.removeClass("editing");
   }
 });

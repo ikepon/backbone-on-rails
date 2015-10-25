@@ -1,3 +1,25 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#tasks-main {
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+  li.editing .edit {
+    display: inline;
+  }
+
+  li.editing .task-title {
+    display: none;
+  }
+
+  li .task-title label {
+    word-break: break-word;
+  }
+
+  li .edit {
+    display: none;
+  }
+}
