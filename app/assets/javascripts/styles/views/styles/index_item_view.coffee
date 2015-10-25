@@ -11,7 +11,9 @@ StyleSample.Views.Styles.IndexItemView = Backbone.View.extend
     "click a": "navigateToNote"
 
   render: ->
-    @$el.html(@template(@model.toJSON()))
+    context = @model.toJSON()
+    _.extend(context, previewStyle: @model.previewStyle())
+    @$el.html(@template(context))
     this
 
   navigateToNote: (e) ->
