@@ -18,6 +18,8 @@ this.StyleSample =
   Views: {}
   Routers: {}
   init: ->
+    @router = new StyleSample.Routers.Style()
+    Backbone.history.start(pushState: true)
     console.log 'init StyleSample'
 
 $ ->
