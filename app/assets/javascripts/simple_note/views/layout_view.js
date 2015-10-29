@@ -1,21 +1,15 @@
 var s;
 
-s = this.SimpleNote;
+s = SimpleNote;
 
-if (s.Views == null) {
-  s.Views = {};
-}
-
-s.Views.LayoutView = Backbone.View.extend({
+s.LayoutView = Backbone.View.extend({
   viewContainer: "#main",
-
   currentView: null,
-
   setView: function(view) {
     if (this.currentView) {
       this.currentView.remove();
     }
     this.currentView = view;
-    return this.$(this.viewContainer).html(view.render().$el);
+    return this.$(this.viewContainer).html(view.render().el);
   }
 });
