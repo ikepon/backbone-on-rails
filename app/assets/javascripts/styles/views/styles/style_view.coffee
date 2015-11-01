@@ -1,9 +1,9 @@
 StyleSample.Views.Styles ?= {}
 
-StyleSample.Views.Styles.NewView = Backbone.View.extend
+StyleSample.Views.Styles.StyleView = Backbone.View.extend
   className: "new-style"
 
-  template: JST["styles/new"]
+  template: JST["styles/style"]
 
   events:
     "click .submit-style-form": "submit"
@@ -15,6 +15,7 @@ StyleSample.Views.Styles.NewView = Backbone.View.extend
 
 
   render: ->
+    console.log @model
     context = @model.toJSON()
     # TODO とりあえず動いた。あとでこの方法は見直す
     selections = ['ボタン', '見出し', 'パラグラフ', 'インプット']

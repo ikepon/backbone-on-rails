@@ -2,16 +2,16 @@
   <div class="form-group">
     <label>カテゴリー</label>
     {{#each selections}}
-      <input class="radio-category" type="radio" name="style[category]" value="{{this}}"> {{this}}
+      <input class="radio-category" type="radio" name="style[category]"> {{this}}
     {{/each}}
   </div>
   <div class="form-group">
     <label>タイトル</label>
-    <input class="form-control" id="input-title" type="text" name="style[title]">
+    <input class="form-control" id="input-title" type="text" name="style[title]" value="{{title}}">
   </div>
   <div class="form-group">
     <label>スタイル</label>
-    <textarea class="form-control" id="input-style" rows="20" name="style[style]"></textarea>
+    <textarea class="form-control" id="input-style" rows="20" name="style[style]">{{style}}</textarea>
   </div>
   <div class="form-group">
     <input class="submit-style-form btn btn-primary" type="submit" value="送信">

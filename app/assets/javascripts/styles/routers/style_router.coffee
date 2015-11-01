@@ -5,15 +5,26 @@ StyleSample.Routers.Style = Backbone.Router.extend
     "styles": "indexStyles"
 
   indexStyles: ->
-    @styles ||= new StyleSample.Collections.Styles()
     @currentView.remove() if @currentView
+
+    @styles ||= new StyleSample.Collections.Styles()
     @currentView = new StyleSample.Views.Styles.IndexView(collection: @styles)
     @styles.fetch(reset: true)
 
   newStyle: ->
-    @style = new StyleSample.Models.Style()
     @currentView.remove() if @currentView
-    @currentView = new StyleSample.Views.Styles.NewView(model: @style)
+
+    @style = new StyleSample.Models.Style()
+    @currentView = new StyleSample.Views.Styles.StyleView(model: @style)
+    @listenTo @currentView, "clickSubmit", =>
+      @style.save()
+    @currentView.render()
+
+  showStyle: (id) ->
+    @currentView.remove() if @currentView
+
+    @style = @styles.get(id)
+    @currentView = new StyleSample.Views.Styles.StyleView(model: @style)
     @listenTo @currentView, "clickSubmit", =>
       @style.save()
     @currentView.render()
