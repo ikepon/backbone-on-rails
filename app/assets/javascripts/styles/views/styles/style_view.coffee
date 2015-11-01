@@ -11,14 +11,13 @@ StyleSample.Views.Styles.StyleView = Backbone.View.extend
   bindings:
     ".radio-category": "category"
     "#input-style-title": "title"
-    "#input-style": "style"
+    "#input-style": "body"
 
 
   render: ->
-    console.log @model
     context = @model.toJSON()
     # TODO とりあえず動いた。あとでこの方法は見直す
-    selections = ['ボタン', '見出し', 'パラグラフ', 'インプット']
+    selections = ['button', 'header', 'paragraph', 'input']
     _.extend(context, selections: selections)
     @$el.html(@template(context))
     $("#styles-main").html(@el)
