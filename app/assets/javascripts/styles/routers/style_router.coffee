@@ -14,4 +14,6 @@ StyleSample.Routers.Style = Backbone.Router.extend
     @style = new StyleSample.Models.Style()
     @currentView.remove() if @currentView
     @currentView = new StyleSample.Views.Styles.NewView(model: @style)
+    @listenTo @currentView, "clickSubmit", =>
+      @style.save()
     @currentView.render()

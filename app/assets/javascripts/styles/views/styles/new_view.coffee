@@ -5,6 +5,9 @@ StyleSample.Views.Styles.NewView = Backbone.View.extend
 
   template: JST["styles/new"]
 
+  events:
+    "click .submit-style-form": "submit"
+
   bindings:
     ".radio-category": "category"
     "#input-style-title": "title"
@@ -20,3 +23,7 @@ StyleSample.Views.Styles.NewView = Backbone.View.extend
     $("#styles-main").html(@el)
     @stickit()
     this
+
+  submit: (e) ->
+    e.preventDefault()
+    @trigger("clickSubmit")
