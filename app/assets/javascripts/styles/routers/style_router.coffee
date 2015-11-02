@@ -4,10 +4,12 @@ StyleSample.Routers.Style = Backbone.Router.extend
     "styles/:id": "showStyle"
     "styles": "indexStyles"
 
+  initialize: (options) ->
+    @styles = new StyleSample.Collections.Styles()
+
   indexStyles: ->
     @currentView.remove() if @currentView
 
-    @styles ||= new StyleSample.Collections.Styles()
     @currentView = new StyleSample.Views.Styles.IndexView(collection: @styles)
     @styles.fetch(reset: true)
 
@@ -15,15 +17,22 @@ StyleSample.Routers.Style = Backbone.Router.extend
     @currentView.remove() if @currentView
 
     @style = new StyleSample.Models.Style()
-    @currentView = new StyleSample.Views.Styles.StyleView(model: @style)
-    @listenTo @currentView, "clickSubmit", =>
-      @style.save()
-    @currentView.render()
+    @__renderStyleView()
+    @listenTo @style, "sync", =>
+      @navigate("styles", true)
 
   showStyle: (id) ->
     @currentView.remove() if @currentView
 
     @style = @styles.get(id)
+    if @style
+      @__renderStyleView()
+    else
+      @style = new StyleSample.Models.Style(id: id)
+      @style.fetch
+        success: => @__renderStyleView()
+
+  __renderStyleView: ->
     @currentView = new StyleSample.Views.Styles.StyleView(model: @style)
     @listenTo @currentView, "clickSubmit", =>
       @style.save()
