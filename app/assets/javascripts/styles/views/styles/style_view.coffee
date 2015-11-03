@@ -7,6 +7,7 @@ StyleSample.Views.Styles.StyleView = Backbone.View.extend
 
   events:
     "click .submit-style-form": "submit"
+    "click .back": "navigateToStyleIndex"
 
   bindings:
     ".radio-category": "category"
@@ -27,3 +28,7 @@ StyleSample.Views.Styles.StyleView = Backbone.View.extend
   submit: (e) ->
     e.preventDefault()
     @trigger("clickSubmit")
+
+  navigateToStyleIndex: (e) ->
+    e.preventDefault()
+    Backbone.history.navigate("styles", true)
