@@ -1,0 +1,28 @@
+<p>
+<a class="back btn btn-default" href="/styles">スタイル一覧に戻る</a>
+</p>
+<div class="row">
+  <div class="form-col col-xs-6">
+    <form>
+      <div class="form-group">
+        <label>カテゴリー</label>
+        {{#each selections}}
+          <input class="radio-category" type="radio" name="style[category]" value="{{this}}"> {{this}}
+        {{/each}}
+      </div>
+      <div class="form-group">
+        <label>タイトル</label>
+        <input class="form-control" id="input-style-title" type="text" name="style[title]" value="{{title}}">
+      </div>
+      <div class="form-group">
+        <label>スタイル</label>
+        <textarea class="form-control" id="input-style" rows="20" name="style[raw_body]">{{raw_body}}</textarea>
+      </div>
+      <div class="form-group">
+        <input class="submit-style-form btn btn-primary" type="submit" value="送信">
+      </div>
+    </form>
+  </div>
+  <div class="preview-col col-xs-6">
+  </div>
+</div>
