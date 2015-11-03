@@ -8,7 +8,8 @@ StyleSample.Views.Styles.IndexItemView = Backbone.View.extend
   template: JST["styles/index_item"]
 
   events:
-    "click a": "navigateToNote"
+    "click .style-title": "navigateToStyle"
+    "click .delete-style": "deleteStyle"
 
   render: ->
     context = @model.toJSON()
@@ -16,6 +17,13 @@ StyleSample.Views.Styles.IndexItemView = Backbone.View.extend
     @$el.html(@template(context))
     this
 
-  navigateToNote: (e) ->
+  navigateToStyle: (e) ->
     e.preventDefault()
     Backbone.history.navigate("styles/#{@model.id}", true)
+
+  deleteStyle: (e) ->
+    e.preventDefault()
+
+    if confirm("スタイルを削除しますか？")
+        @model.destroy().done =>
+          @remove()

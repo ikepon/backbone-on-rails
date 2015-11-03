@@ -1,3 +1,36 @@
 // Place all the styles related to the styles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#styles-main {
+  padding: 0;
+
+  .style {
+    width: 320px;
+    height: 200px;
+    vertical-align: top;
+    background-color: #FCFCFC;
+
+    display: inline-block;
+    list-style-type: none;
+    border-radius: 10px 10px 10px 10px;
+
+    margin: 0 4px 10px 4px;
+
+    padding: 0px 8px 8px 8px;
+
+    .delete-style {
+      color: black;
+      font-size: 80%;
+    }
+
+    .style-preview {
+      margin-top: 4px;
+      color: #888;
+    }
+  }
+}
+
+#style-menu {
+  margin-bottom: 10px;
+}
