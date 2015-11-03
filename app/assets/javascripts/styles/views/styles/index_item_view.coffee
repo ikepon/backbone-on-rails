@@ -11,6 +11,10 @@ StyleSample.Views.Styles.IndexItemView = Backbone.View.extend
     "click .style-title": "navigateToStyle"
     "click .delete-style": "deleteStyle"
 
+  initialize: ->
+    @listenTo @model, "destroy", =>
+      @remove()
+
   render: ->
     context = @model.toJSON()
     _.extend(context, previewStyle: @model.previewStyle())
@@ -25,5 +29,4 @@ StyleSample.Views.Styles.IndexItemView = Backbone.View.extend
     e.preventDefault()
 
     if confirm("スタイルを削除しますか？")
-        @model.destroy().done =>
-          @remove()
+        @model.destroy()

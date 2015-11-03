@@ -10,5 +10,5 @@ StyleSample.Models.Style = Backbone.Model.extend
       dataType: "json"
       data: {raw_body: @get("raw_body")}
     ).done (data) =>
-      @set("body", data)
+      @set("body", data.body)
       @trigger("renderBody", data)
