@@ -12,6 +12,12 @@ class StylesController < ApplicationController
   def show
   end
 
+  def rendering
+    @style = Style.new do |n|
+      n.raw_body = ERB::Util.h(params[:raw_body])
+    end
+  end
+
   # GET /styles/new
   def new
     @style = Style.new
@@ -69,6 +75,6 @@ class StylesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def style_params
-      params.require(:style).permit(:title, :category, :body)
+      params.require(:style).permit(:title, :category, :body, :raw_body)
     end
 end

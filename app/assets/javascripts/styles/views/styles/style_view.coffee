@@ -12,7 +12,7 @@ StyleSample.Views.Styles.StyleView = Backbone.View.extend
   bindings:
     ".radio-category": "category"
     "#input-style-title": "title"
-    "#input-style": "body"
+    "#input-style": "raw_body"
 
 
   render: ->
@@ -22,6 +22,8 @@ StyleSample.Views.Styles.StyleView = Backbone.View.extend
     _.extend(context, selections: selections)
     @$el.html(@template(context))
     $("#styles-main").html(@el)
+    preview = new StyleSample.Views.Styles.PreviewView(model: @model, el: @$(".preview-col"))
+    preview.render()
     @stickit()
     this
 
