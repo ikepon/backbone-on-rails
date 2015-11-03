@@ -14,6 +14,5 @@ StyleSample.Views.Styles.PreviewView = Backbone.View.extend
 
   render: ->
     @$el.html(@template(@model.toJSON()))
-    @$("#style-body").html(@template(@model.toJSON()))
     @model.trigger("change:raw_body")
     @stickit()

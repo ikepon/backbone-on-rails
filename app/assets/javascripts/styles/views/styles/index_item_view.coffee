@@ -17,7 +17,7 @@ StyleSample.Views.Styles.IndexItemView = Backbone.View.extend
 
   render: ->
     context = @model.toJSON()
-    _.extend(context, previewStyle: @model.previewStyle())
+    _.extend(context, previewText: @model.previewText())
     @$el.html(@template(context))
     this
 

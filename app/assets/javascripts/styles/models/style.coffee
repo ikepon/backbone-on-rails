@@ -1,8 +1,8 @@
 StyleSample.Models.Style = Backbone.Model.extend
   urlRoot: '/styles'
 
-  previewStyle: (length = 140) ->
-    @get("raw_body").substring(0, length)
+  previewText: (length = 140) ->
+    @get("raw_body")?.substring(0, length)
 
   renderBody: ->
     $.ajax("/styles/rendering",
